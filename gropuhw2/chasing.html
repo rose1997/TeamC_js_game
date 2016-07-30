@@ -1,0 +1,456 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<style>
+#EnterName1{
+  width: 300px;
+  background-color: #008080;
+  border: 10px black double;;
+  text-align: center;
+  position: absolute;
+  left:52%;
+  top:40%;
+  z-index: 3;
+  box-shadow: 0px 0px 5px 5px gray;
+}
+#EnterName2{
+  width: 300px;
+  background-color: #008080;
+  border: 10px black double;;
+  text-align: center;
+  position: absolute;
+  left:52%;
+  top:40%;
+  z-index: 2;
+  box-shadow: 0px 0px 5px 5px gray;
+}
+#EnterName3{
+  width: 300px;
+  background-color: #008080;
+  border: 10px black double;;
+  text-align: center;
+  position: absolute;
+  left:52%;
+  top:40%;
+  z-index: 1;
+  box-shadow: 0px 0px 5px 5px gray;
+}
+  body{
+    background-color: #2F4F4F;
+  }
+  .GameArea{
+    width:60%;
+    height: 70%;
+  	background-color:#F0E68C;
+    float: left;
+    border:5px black dashed;
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+
+
+  }
+  .NameArea{
+    background-color: white;
+    float: left;
+    width: :20%;
+
+    padding-left:1%;
+    padding-right: 1%;
+    padding-bottom: 3%;
+    float: left;
+    border:5px black dashed;
+    margin-left: 8%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+
+  }
+
+.container{
+  width: 50px;
+  position: absolute;
+}
+.SafeArea1{
+  width: 150px;
+  height: 150px;
+  background-color: #B0C4DE;
+  float: left;
+  border: 2px white dashed;
+
+}
+.SafeArea2{
+  width: 150px;
+  height: 150px;
+  background-color: #B0C4DE;
+  float: right;
+  border: 2px white dashed;
+}
+.SafeArea3{
+  width: 150px;
+  height: 150px;
+  background-color: #B0C4DE;
+  border: 2px white dashed;
+  float:left;
+}
+.SafeArea4{
+  width: 150px;
+  height: 150px;
+  background-color: #B0C4DE;
+  border: 2px white dashed;
+  float: right;
+}
+.button{
+  margin-top: 2%;
+  width: 10%;
+  height: 90%;
+  float:left;
+}
+.hover1:hover {
+  transform: scale(1.2,1.2);
+}
+.hover2:hover {
+  transform: scale(1.2,1.2);
+}
+.hover3:hover {
+  transform: scale(1.2,1.2);
+}
+.hover4:hover {
+  transform: scale(1.2,1.2);
+}
+.hover5:hover {
+  transform: scale(1.2,1.2);
+}
+
+
+</style>
+<script type="text/javascript" src="./jquery-latest.pack.js"></script>
+<script>
+$(function(){                                             <!--控制safe區對齊四個角-->
+	var parent = $("[maign]").parents("div");
+	var _max = 0;
+	parent.children("div").each(function(){
+		var _h = $(this).height();
+		if(_h>_max) _max = _h;
+	}).end().css({
+		height: _max,
+		position:'relative'
+	});
+
+	$("[maign]").each(function(){
+		var align=$(this).attr("maign");
+		var valign=$(this).attr("mvalign");
+		$(this).css({
+			position:'absolute'
+		}).css(align, 0).css(valign, 0);
+	});
+});
+
+</script>
+<script>
+  var count1=0,count2=0,count3=0;
+  var iscount1=true,iscount2=true,iscount3=true;
+  function changename1(){
+    var x=document.getElementById("player1name").value;
+    document.getElementById("player1").innerHTML=x;
+    document.getElementById("picname1").innerHTML=x;
+    document.getElementById("EnterName1").style.zIndex = "-1";
+  }
+
+  function changename2(){
+    var y=document.getElementById("player2name").value;
+    document.getElementById("player2").innerHTML=y;
+    document.getElementById("picname2").innerHTML=y;
+    document.getElementById("EnterName2").style.zIndex = "-3";
+  }
+
+  function changename3(){
+    var z=document.getElementById("player3name").value;
+    document.getElementById("player3").innerHTML=z;
+    document.getElementById("picname3").innerHTML=z;
+    document.getElementById("EnterName3").style.zIndex = "-5";
+  }
+
+  function walk(){
+	   var character=document.getElementById("down");
+     var character2=document.getElementById("down2");
+     var character3=document.getElementById("down3");
+	   var x=parseInt(character.style.left);
+	   var y=parseInt(character.style.top);
+     var z=parseInt(character2.style.left);
+     var k=parseInt(character2.style.top);
+     var i=parseInt(character3.style.left);
+     var j=parseInt(character3.style.top);
+     switch(event.keyCode){
+       case 37:	//player1按下左移鍵
+        if(x>=-19){
+          x=x-20;
+			    character.style.left=x+"px";
+			    character.style.top=y+"px";
+        }
+        break;
+		  case 39:	//player1按下右移鍵
+        if(x<=1077){
+          x=x+20;
+			    character.style.left=x+"px";
+			    character.style.top=y+"px";
+        }
+        break;
+		  case 38:	//player1按下up鍵
+        if(y>=-15){
+          y=y-20;
+			    character.style.left=x+"px";
+			    character.style.top=y+"px";
+        }
+        break;
+		  case 40:	//player1按下down鍵
+        if(y<=705){
+          y=y+20;
+			    character.style.left=x+"px";
+			    character.style.top=y+"px";
+        }
+        break;
+    }
+
+  switch(event.keyCode){
+    case 72:	//player2按下左移鍵
+      if(z>=-19){
+        z=z-20;
+        character2.style.left=z+"px";
+        character2.style.top=k+"px";
+      }
+      break;
+    case 75:	//player2按下右移鍵
+      if(z<=1065){
+        z=z+20;
+        character2.style.left=z+"px";
+        character2.style.top=k+"px";
+      }
+      break;
+    case 85:	//player2按下up鍵
+      if(k>=-15){
+        k=k-20;
+        character2.style.left=z+"px";
+        character2.style.top=k+"px";
+      }
+      break;
+    case 74:	//player2按下down鍵
+    if(k<=708){
+      k=k+20;
+      character2.style.left=z+"px";
+      character2.style.top=k+"px";
+    }
+    break;
+  }
+
+  switch(event.keyCode){
+      case 65:	//player3按下左移鍵
+        if(i>=-19){
+          i=i-20;
+        	character3.style.left=i+"px";
+        	character3.style.top=j+"px";
+        }
+        break;
+      case 68:	//player3按下右移鍵
+        if(i<=1077){
+          i=i+20;
+        	character3.style.left=i+"px";
+        	character3.style.top=j+"px";
+        }
+        break;
+      case 87:	//player3按下up鍵
+        if(j>=-15){
+          j=j-20;
+        	character3.style.left=i+"px";
+        	character3.style.top=j+"px";
+        }
+        break;
+      case 83:	//player3按下down鍵
+        if(j<=708){
+          j=j+20;
+        	character3.style.left=i+"px";
+        	character3.style.top=j+"px";
+        }
+        break;
+  }
+
+
+  if(iscount1&&x<=100&&y<=60){     //控制player1的count
+      count1++;
+      iscount1=false;
+  }
+  if(iscount1&&x>=940&&y<=60){
+      count1++;
+      iscount1=false;
+  }
+  if(iscount1&&x<=100&&y>=600){
+      count1++;
+      iscount1=false;
+  }
+  if(iscount1&&x>=940&&y>=600){
+      count1++;
+      iscount1=false;
+  }
+  if(x>100)
+    if(x<940)
+      if(y>60)
+        if(y<600)
+          iscount1=true;
+  if(x<100)
+    if(y>60)
+      if(y<600)
+        iscount1=true;
+  if(x>940)
+    if(y>60)
+      if(y<600)
+        iscount1=true;
+  if(x>100)
+    if(x<940)
+      if(y<60)
+        iscount1=true;
+  if(x>100)
+    if(x<940)
+      if(y>600)
+        iscount1=true;
+
+
+  if(iscount2&&z<=100&&k<=60){     //控制player2的count
+    count2++;
+    iscount2=false;
+  }
+  if(iscount2&&z>=940&&k<=60){
+     count2++;
+     iscount2=false;
+   }
+   if(iscount2&&z<=100&&k>=600){
+     count2++;
+     iscount2=false;
+   }
+   if(iscount2&&z>=940&&k>=600){
+     count2++;
+     iscount2=false;
+   }
+  if(z>100)
+    if(z<940)
+      if(k>60)
+        if(k<600)
+          iscount2=true;
+  if(z<100)
+    if(k>60)
+      if(k<600)
+        iscount2=true;
+  if(z>940)
+    if(k>60)
+      if(k<600)
+        iscount2=true;
+  if(z>100)
+    if(z<940)
+      if(k<60)
+        iscount2=true;
+  if(z>100)
+    if(z<940)
+      if(k>600)
+        iscount2=true;
+
+  if(iscount3&&i<=100&&j<=60){     //控制player3的count
+    count3++;
+    iscount3=false;
+  }
+  if(iscount3&&i>=940&&j<=60){
+    count3++;
+    iscount3=false;
+  }
+  if(iscount3&&i<=100&&j>=600){
+    count3++;
+    iscount3=false;
+  }
+  if(iscount3&&i>=940&&j>=600){
+    count3++;
+    iscount3=false;
+  }
+  if(i>100)
+    if(i<940)
+      if(j>60)
+        if(j<600)
+          iscount3=true;
+  if(i<100)
+    if(j>60)
+      if(j<600)
+        iscount3=true;
+  if(i>940)
+    if(j>60)
+      if(j<600)
+        iscount3=true;
+  if(i>100)
+    if(i<940)
+      if(j<60)
+        iscount3=true;
+  if(i>100)
+    if(i<940)
+      if(j>600)
+        iscount3=true;
+
+  document.getElementById("ccount1").innerHTML=count1;  //讓NameArea的count更改
+  document.getElementById("ccount2").innerHTML=count2;
+  document.getElementById("ccount3").innerHTML=count3;
+}
+
+</script>
+<body onkeydown="walk()">
+
+  <div id="EnterName1">
+    <form>
+      <h3>Enter Player1's name</h3>
+      <input id="player1name" type="text" style="border-color:#ffffff;" name="name1" vaule="name">
+      <input onclick="changename1()"  type="button" value="OK">
+    </form>
+  </div>
+  <div id="EnterName2">
+    <form>
+      <h3>Enter Player2's name</h3>
+      <input id="player2name" type="text" style="border-color:#ffffff;" name="name1" vaule="name">
+      <input onclick="changename2()"  type="button" value="OK">
+    </form>
+  </div>
+  <div id="EnterName3">
+    <form>
+      <h3>Enter Player3's name</h3>
+      <input id="player3name" type="text" style="border-color:#ffffff;" name="name1" vaule="name">
+      <input onclick="changename3()"  type="button" value="OK">
+    </form>
+  </div>
+
+<div class"container">
+  <div class="NameArea">
+    <h2>Ghost Chasing</h2>
+    <div><img src="ghost.png" style="width:200px;"></div>
+
+    <div style="background-color:#F08080;  text-align:center;border-radius:15px;"><h2 id="player1">Player1</h2><h3>Time : ????second</h3><h3 style="display:inline;">Count : </h3><h3 id="ccount1" style="display:inline;">0</h3></div>
+    <div style="background-color:#F08080;  text-align:center; margin-top:10px; border-radius:15px;"><h2 id="player2">Player2</h2><h3>Time : ????second</h3><h3 style="display:inline;">Count : </h3><h3 id="ccount2" style="display:inline;">0</h3></div>
+    <div style="background-color:#F08080;  text-align:center; margin-top:10px; border-radius:15px;"><h2 id="player3">Player3</h2><h3>Time : ????second</h3><h3 style="display:inline;">Count : </h3><h3 id="ccount3" style="display:inline;">0</h3></div>
+  </div>
+  <div class="button">  <!-- 按鍵圖片 -->
+  <center>
+    <br>
+    <img class="hover1" src="start.png" style="width:80px;cursor: pointer;" ><br>
+    <img class="hover2" src="stop.png" style="width:80px;cursor: pointer;" ><br>
+    <img class="hover3" src="goback.png" style="width:80px;cursor: pointer;" ><br>
+    <img class="hover4" src="return.png" style="width:80px;cursor: pointer;" ><br>
+    <img class="hover5" src="question.png" style="width:80px;cursor: pointer;" >
+  </center>
+  </div>
+  <div class="GameArea">
+
+    <div class="SafeArea1"><br><br><p style="text-align:center;">SAFE1</p></div>
+    <div class="SafeArea2"><br><br><p style="text-align:center;">SAFE2</p></div>
+
+    <div class="SafeArea3" maign="right" mvalign="bottom"><br><br><p style="text-align:center;">SAFE3</p></div>
+    <div class="SafeArea4" maign="left" mvalign="bottom"><br><br><p style="text-align:center;">SAFE4</p></div>
+    <div id="down" style="position:absolute;top:200px;left:500px;"><img src="player1.png"><h6 id="picname1" style="margin-top:-3px;text-align:center;">Player1</h6></div>
+    <div id="down2" style="position:absolute;top:360px;left:730px;"><img src="player2.png"><h6 id="picname2" style="margin-top:-3px;text-align:center;">Player2</h6></div>
+    <div id="down3" style="position:absolute;top:360px;left:280px;"><img src="player3.png"><h6 id="picname3" style="margin-top:-3px;text-align:center;">Player3</h6></div>
+  </div>
+
+</div>
+</body>
+</html>
